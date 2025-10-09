@@ -1,0 +1,21 @@
+QLabel#titleLabel {
+    font-family: "Microsoft YaHei UI";
+    font-weight: bold;
+    font-size: 80px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+QWidget#loginWidget {
+    background-color: rgba(255, 255, 255, 0.8); /* 白色，80% 透明度，可根据需要调整颜色和透明度 */
+    border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
+    border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
+}
+
+QLabel#loginTitleLabel {
+    font-family: "Microsoft YaHei", "SimHei", sans-serif; /* 选用微软雅黑等美观字体，无则 fallback 到黑体等 */
+    font-size: 80px; /* 字体大小，可根据实际调整 */
+    font-weight: bold; /* 字体加粗，让文字更醒目 */
+    color: black; /* 设置为黑色 */
+}

@@ -1,0 +1,75 @@
+QWidget#statusWidget{
+    /* border-image: url(:/img/status_background.png) 0 0 0 0 stretch stretch; */
+    background-color: transparent;
+    border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
+    border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
+}
+
+QWidget#watcherWidget{
+    border-image: url(:/img/watcher_background.png) 0 0 0 0 stretch stretch;
+    border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
+    border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
+}
+
+QWidget#knowledgeWidget{
+    border-image: url(:/img/knowledge_background.png) 0 0 0 0 stretch stretch;
+    border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
+    border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
+}
+
+QWidget#agentWidget{
+    border-image: url(:/img/agent_background.png) 0 0 0 0 stretch stretch;
+    border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
+    border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
+}
+
+QLabel#welcomeLabel,
+QLabel#timeLabel {
+    font-family: "Microsoft YaHei";   /* 或 "微软雅黑" */
+    font-size: 50px;                  /* 也可以 16pt，看你想用像素还是点 */
+    font-weight: bold;                /* 等价于 font-weight: 700; */
+    /* 其他可选 */
+    color: #222;
+}
+
+QLabel#watcherLabel{
+    /* 字体选择圆润、可爱的类型，这里假设系统有 "Comic Sans MS" 字体，也可替换为其他卡通感字体 */
+    font-family: "Comic Sans MS";
+    /* 字体大小根据实际界面布局调整，让文字清晰且协调 */
+    font-size: 50px;
+    font-weight: bold;
+    /* 文字颜色选柔和的黑色或深灰色，保证可读性同时契合清新感 */
+    color: #333333;
+    /* 背景透明，避免遮挡图片 */
+    background-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+QLabel#knowledgeLabel {
+    font-family: "Comic Sans MS";
+    font-size: 50px;
+    font-weight: bold;
+    color: #5a3d9e;
+    background-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+QLabel#agentLabel {
+    font-family: "Comic Sans MS", "Bubblegum Sans";
+    font-size: 50px;
+    font-weight: bold;
+    color: #1a237e;
+    background-color: transparent;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* 轻微阴影增强清晰度 */
+}
+
+QPushButton#backbutton {
+    color: #FFFFFF;
+    font-family: "Microsoft YaHei";
+    font-size: 40px;
+    background-color: #6C63FF; /* 主色调背景 */
+    border: 1px solid #5A52E5; /* 深色边框增强质感 */
+    border-radius: 6px; /* 圆角优化，更柔和 */
+    padding: 6px 12px; /* 内边距，保证点击区域 */
+}
