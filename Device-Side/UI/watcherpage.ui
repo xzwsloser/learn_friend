@@ -30,9 +30,9 @@
           <item>
            <widget class="QPushButton" name="backButton">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>1</horstretch>
-              <verstretch>0</verstretch>
+              <verstretch>40</verstretch>
              </sizepolicy>
             </property>
             <property name="text">
@@ -144,7 +144,7 @@
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="onbutton">
+                     <widget class="QPushButton" name="onButton">
                       <property name="text">
                        <string>显示监控画面</string>
                       </property>
@@ -314,21 +314,21 @@
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_15">
                     <item>
-                     <widget class="QPushButton" name="startbutton">
+                     <widget class="QPushButton" name="startButton">
                       <property name="text">
                        <string>开启监控</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="stopbutton">
+                     <widget class="QPushButton" name="stopButton">
                       <property name="text">
                        <string>暂停监控</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="endbutton">
+                     <widget class="QPushButton" name="endButton">
                       <property name="text">
                        <string>结束监控</string>
                       </property>

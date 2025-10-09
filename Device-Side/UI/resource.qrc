@@ -974,5 +974,6 @@
         <file>img/status_background.png</file>
         <file>img/watcher_setting_background.png</file>
         <file>qss/watcher.qss</file>
+        <file>img/distracted_reminder.png</file>
     </qresource>
 </RCC>

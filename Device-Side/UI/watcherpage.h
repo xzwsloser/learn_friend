@@ -17,9 +17,11 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *ev) override;
+    bool eventFilter(QObject *watched, QEvent *ev) override;
 
 private:
     Ui::WatcherPage *ui;
+    void updateTime();
 };
 
 #endif // WATCHERPAGE_H

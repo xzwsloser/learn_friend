@@ -11,3 +11,75 @@ QWidget#settingWidget {
     border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
     border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
 }
+
+QWidget#screen {
+    border-image: url(:/img/distracted_reminder.png) 0 0 0 0 stretch stretch;
+    border-radius: 10px; /* 圆角半径，可根据需要调整大小 */
+    border: 1px solid #cccccc; /* 可选：添加边框线，颜色和粗细可调整 */
+}
+
+QPushButton#backButton {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #388E3C;
+    padding: 5px 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+QLabel#promptLabel,
+QLabel#timeLabel {
+    font-family: "Microsoft YaHei";
+    font-size: 50px;
+    font-weight: bold;
+    color: #222;
+}
+
+QPushButton#onButton {
+        background-color: #87CEEB;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        padding: 6px 12px;
+        font-size: 30px;
+        font-weight: bold;
+}
+
+QLabel#settingPromptLabel {
+    font-family: "Microsoft YaHei", "SimHei", sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    color: #333333;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    padding: 5px 0px;
+}
+
+QCheckBox {
+    font-family: "Microsoft YaHei", "SimHei", sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #555555;
+    margin: 5px 0;
+}
+
+QCheckBox::indicator:unchecked {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #87CEEB;
+    border-radius: 3px;
+    background-color: white;
+}
+
+QPushButton#startButton,
+QPushButton#stopButton,
+QPushButton#endButton {
+    font-family: "Microsoft YaHei", "SimHei", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    border: 1px solid #b0e0e6;
+    border-radius: 5px;
+    padding: 6px 12px;
+    background-color: #f0f8ff;
+}
