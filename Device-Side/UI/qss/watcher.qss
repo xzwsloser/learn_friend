@@ -29,7 +29,8 @@ QPushButton#backButton {
 }
 
 QLabel#promptLabel,
-QLabel#timeLabel {
+QLabel#timeLabel,
+QLabel#statusLabel {
     font-family: "Microsoft YaHei";
     font-size: 50px;
     font-weight: bold;
