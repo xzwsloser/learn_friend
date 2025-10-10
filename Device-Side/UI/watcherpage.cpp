@@ -18,6 +18,7 @@ WatcherPage::WatcherPage(QWidget *parent)
     frame = new QLabel{this};
     params_ = new WatcherParams;
     timer_ = new QTimer{this};
+    promptPage_ = new PromptPage{this};
 
     QFile file{":/qss/watcher.qss"};
     if (file.open(QFile::ReadOnly | QFile::Text)) {
@@ -107,6 +108,31 @@ WatcherPage::WatcherPage(QWidget *parent)
         }
     );
 
+    /* prompt */
+    msgTemplate_ =  "|指标|次数|时长|\n|---|---|---|\n|专注度|-|%1|\n|走神次数|%2|-|\n|其他行为|%3|-|";
+
+    promptPage_->hide();
+
+    connect(
+        promptPage_,
+        &PromptPage::save,
+        this,
+        &WatcherPage::save
+    );
+
+    connect(
+        promptPage_,
+        &PromptPage::cancel,
+        this,
+        &WatcherPage::cancel
+    );
+
+    connect(
+        ui->backButton,
+        &QPushButton::clicked,
+        this,
+        &WatcherPage::backToMain
+    );
 
     /* update status */
     updateStatus();
@@ -282,16 +308,7 @@ void WatcherPage::endWatcher()
         showMessage("监控已结束", true);
         /* TODO: 结束监控, 展示参数 */
 
-    } else if (status_ == WatcherStatus::ENDED) {
-        /* DEBUG */
-        status_ = WatcherStatus::UNSTARTED;
-        ui->timeSettingLabel->setText("");
-        ui->timeSettingLabel->setLabel("请输入监控时长 (mid)");
-        ui->attentioncheckBox->setCheckState(Qt::Unchecked);
-        ui->distractedcheckBox->setCheckState(Qt::Unchecked);
-        ui->othercheckBox->setCheckState(Qt::Unchecked);
     }
-
     updateStatus();
 }
 
@@ -312,8 +329,63 @@ void WatcherPage::updateStatus()
         QString prompt = QString("学习结束  %1 分钟")
                              .arg(params_->passedTime_);
         ui->statusLabel->setText(prompt);
+        /* TODO: Get The Params */
+        showPrompt("1", "2", "3");
     } else if (status_ == WatcherStatus::UNSTARTED) {
         QString prompt = QString("请开启学习监控");
         ui->statusLabel->setText(prompt);
     }
 }
+
+void WatcherPage::resizeEvent(QResizeEvent *ev)
+{
+    QWidget::resizeEvent(ev);
+
+    if (!promptPage_->isHidden()) {
+        promptPage_->setFixedSize(this->width()*2/3, this->height()*2/3);
+        promptPage_->move((width() - promptPage_->width()) / 2,
+                          (height() - promptPage_->height()) / 2);
+    }
+}
+
+void WatcherPage::showPrompt(const QString &attentionMsg,
+                             const QString &distractedMsg,
+                             const QString &otherMsg)
+{
+    promptPage_->setFixedSize(this->width()*2/3, this->height()*2/3);
+    int x = (this->width() - promptPage_->width()) / 2;
+    int y = (this->height() - promptPage_->height()) / 2;
+    promptPage_->move(x,y);
+    promptPage_->setMarkdownInfo(msgTemplate_
+                                     .arg(attentionMsg)
+                                     .arg(distractedMsg)
+                                     .arg(otherMsg));
+    promptPage_->show();
+}
+
+void WatcherPage::save()
+{
+    /* TODO: 保存学习参数 */
+    status_ = WatcherStatus::UNSTARTED;
+    promptPage_->hide();
+    clearAllText();
+    updateStatus();
+}
+
+void WatcherPage::cancel()
+{
+    status_ = WatcherStatus::UNSTARTED;
+    promptPage_->hide();
+    clearAllText();
+    updateStatus();
+}
+
+void WatcherPage::clearAllText()
+{
+    ui->timeSettingLabel->setText("");
+    ui->timeSettingLabel->setLabel("请输入监控时长 (mid)");
+    ui->attentioncheckBox->setCheckState(Qt::Unchecked);
+    ui->distractedcheckBox->setCheckState(Qt::Unchecked);
+    ui->othercheckBox->setCheckState(Qt::Unchecked);
+}
+

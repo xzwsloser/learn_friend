@@ -48,7 +48,9 @@ else()
                       sdk/components/qtmaterialavatar.cpp
                       pagemanager.h
                       pagemanager.cpp
-                      watcherpage.h watcherpage.cpp watcherpage.ui)
+                      watcherpage.h watcherpage.cpp watcherpage.ui
+                      promptpage.h promptpage.cpp promptpage.ui
+                    )
   endif()
 endif()
 

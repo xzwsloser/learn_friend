@@ -975,5 +975,7 @@
         <file>img/watcher_setting_background.png</file>
         <file>qss/watcher.qss</file>
         <file>img/distracted_reminder.png</file>
+        <file>qss/prompt.qss</file>
+        <file>img/prompt_background.png</file>
     </qresource>
 </RCC>

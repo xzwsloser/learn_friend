@@ -94,7 +94,7 @@ bool MainPage::eventFilter(QObject *watched, QEvent *ev)
 {
     if (ev->type() == QEvent::MouseButtonPress) {
         if (watched == ui->watcherWidget) {
-            qInfo() << "点击学习监控模式";
+            emit toWatcher();
         } else if (watched == ui->knowledgeWidget) {
             qInfo() << "点击知识库管理";
         } else if (watched == ui->agentWidget) {

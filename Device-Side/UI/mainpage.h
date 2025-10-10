@@ -19,6 +19,7 @@ public:
 
 signals:
     void backToLoginPage();
+    void toWatcher();
 
 protected:
     void paintEvent(QPaintEvent *ev) override;

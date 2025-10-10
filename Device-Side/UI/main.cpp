@@ -1,14 +1,11 @@
-// #include "pagemanager.h"
-#include "watcherpage.h"
+#include "pagemanager.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    // PageManager pm;
-    // pm.show();
-    WatcherPage w;
-    w.show();
+    PageManager pm;
+    pm.show();
     return a.exec();
 }
