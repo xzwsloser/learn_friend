@@ -45,7 +45,8 @@ WatcherPage::WatcherPage(QWidget *parent)
     ui->backButton->setFixedHeight(65);
 
     /* screen widget */
-    ui->onButton->setFixedHeight(60);
+    int h = ui->onButton->height();
+    ui->onButton->setFixedHeight(2*h);
 
     /* param setting widget */
     ui->timeSettingLabel->setLabelFontSize(15);
@@ -57,9 +58,12 @@ WatcherPage::WatcherPage(QWidget *parent)
     QIntValidator *validator = new QIntValidator{1, 1440, ui->timeSettingLabel};
     ui->timeSettingLabel->setValidator(validator);
 
-    ui->startButton->setFixedHeight(60);
-    ui->stopButton->setFixedHeight(60);
-    ui->endButton->setFixedHeight(60);
+    int h_s = ui->startButton->height();
+    int h_st = ui->stopButton->height();
+    int h_eb = ui->endButton->height();
+    ui->startButton->setFixedHeight(2*h_s);
+    ui->stopButton->setFixedHeight(2*h_st);
+    ui->endButton->setFixedHeight(2*h_eb);
 
     connect(
         ui->onButton,

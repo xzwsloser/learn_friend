@@ -43,7 +43,7 @@ QPushButton#onButton {
         border-radius: 8px;
         border: none;
         padding: 6px 12px;
-        font-size: 30px;
+        font-size: 40px;
         font-weight: bold;
 }
 
@@ -76,7 +76,7 @@ QPushButton#startButton,
 QPushButton#stopButton,
 QPushButton#endButton {
     font-family: "Microsoft YaHei", "SimHei", sans-serif;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     color: #333333;
     border: 1px solid #b0e0e6;
