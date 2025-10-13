@@ -4,12 +4,14 @@
 #include "loginpage.h"
 #include "mainpage.h"
 #include "watcherpage.h"
+#include "knowledgepage.h"
 #include <QStackedWidget>
 
 enum PageStatus: int {
     LOGIN = 0,
     MAIN = 1,
-    WATCHER = 2
+    WATCHER = 2,
+    KNOWLEDGE = 3
 };
 
 class PageManager: public QWidget {
@@ -21,6 +23,7 @@ private:
    loginpage *loginpage_;
    MainPage *mainpage_;
    WatcherPage *watcher_;
+   KnowledgePage *knowledge_;
    QString username_;
    QStackedWidget *stackedWidget_;
    PageStatus curpage_;
@@ -30,6 +33,8 @@ private slots:
    void backToLoginPage();
    void fromMainToWatcher();
    void watcherBackToMain();
+   void fromMainToKnowledge();
+   void knowledgeBackToMain();
 };
 
 #endif // PAGEMANAGER_H

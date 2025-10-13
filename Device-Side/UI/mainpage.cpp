@@ -96,7 +96,7 @@ bool MainPage::eventFilter(QObject *watched, QEvent *ev)
         if (watched == ui->watcherWidget) {
             emit toWatcher();
         } else if (watched == ui->knowledgeWidget) {
-            qInfo() << "点击知识库管理";
+            emit toKnowledge();
         } else if (watched == ui->agentWidget) {
             qInfo() << "点击助学助手";
         }

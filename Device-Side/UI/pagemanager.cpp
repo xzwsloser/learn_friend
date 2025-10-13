@@ -9,9 +9,12 @@ PageManager::PageManager()
     loginpage_ = new loginpage{stackedWidget_};
     mainpage_ = new MainPage{stackedWidget_};
     watcher_ = new WatcherPage{stackedWidget_};
+    knowledge_ = new KnowledgePage{stackedWidget_};
+
     stackedWidget_->addWidget(loginpage_);
     stackedWidget_->addWidget(mainpage_);
     stackedWidget_->addWidget(watcher_);
+    stackedWidget_->addWidget(knowledge_);
 
     QVBoxLayout *layout = new QVBoxLayout{this};
     layout->setContentsMargins(0, 0, 0, 0);
@@ -43,6 +46,20 @@ PageManager::PageManager()
         &WatcherPage::backToMain,
         this,
         &PageManager::watcherBackToMain
+    );
+
+    connect(
+        mainpage_,
+        &MainPage::toKnowledge,
+        this,
+        &PageManager::fromMainToKnowledge
+    );
+
+    connect(
+        knowledge_,
+        &KnowledgePage::backToMain,
+        this,
+        &PageManager::knowledgeBackToMain
     );
 
     curpage_ = PageStatus::LOGIN;
@@ -90,6 +107,20 @@ void PageManager::fromMainToWatcher()
 void PageManager::watcherBackToMain()
 {
     watcher_->clearAllText();
+    curpage_ = PageStatus::MAIN;
+    stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
+}
+
+void PageManager::fromMainToKnowledge()
+{
+    knowledge_->clearAllText();
+    curpage_ = PageStatus::KNOWLEDGE;
+    stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
+}
+
+void PageManager::knowledgeBackToMain()
+{
+    knowledge_->clearAllText();
     curpage_ = PageStatus::MAIN;
     stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
 }

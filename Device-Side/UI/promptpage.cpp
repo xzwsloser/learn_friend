@@ -62,4 +62,3 @@ void PromptPage::setMarkdownInfo(const QString &msg)
     ui->infoLabel->setText(msg);
 }
 
-

@@ -20,6 +20,7 @@ public:
 signals:
     void backToLoginPage();
     void toWatcher();
+    void toKnowledge();
 
 protected:
     void paintEvent(QPaintEvent *ev) override;

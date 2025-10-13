@@ -51,6 +51,13 @@ KnowledgePage::KnowledgePage(QWidget *parent)
     font.setPointSize(20);
     ui->timeLabel->setFont(font);
 
+    connect(
+        ui->backButton,
+        &QPushButton::clicked,
+        this,
+        &KnowledgePage::backToMain
+    );
+
     updateTime();
 }
 
@@ -89,6 +96,12 @@ void KnowledgePage::updateTime()
     QTimer::singleShot(leftedTime, [=]() -> void {
         updateTime();
     });
+}
 
+void KnowledgePage::clearAllText()
+{
+    KnowledgeRetrievePage *page =
+        static_cast<KnowledgeRetrievePage*>(ui->stackedWidget->currentWidget());
+    page->clearText();
 }
 

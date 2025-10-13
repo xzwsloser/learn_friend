@@ -103,7 +103,6 @@ KnowledgeRetrievePage::KnowledgeRetrievePage(QWidget *parent)
             zoom(false);
         }
     );
-
 }
 
 KnowledgeRetrievePage::~KnowledgeRetrievePage()
@@ -171,9 +170,7 @@ bool KnowledgeRetrievePage::eventFilter(QObject *watched, QEvent *ev)
                 QMouseEvent *mev = static_cast<QMouseEvent*>(ev);
                 if (mev->button() == Qt::LeftButton) {
                     /* render document */
-                    qInfo() << "clicked";
                     renderDocument(document);
-                    qInfo() << "after";
                     break;
                 }
             }
@@ -512,6 +509,22 @@ void KnowledgeRetrievePage::zoom(bool type)
             showLabel_->setFont(font);
         }
     }
+}
+
+void KnowledgeRetrievePage::clearText()
+{
+    /* delete document */
+    for (DocumentWidget *document: documents_) {
+        if (document) {
+            ui->showContent->layout()->removeWidget(document);
+            delete document;
+            document = nullptr;
+        }
+    }
+
+    documents_.clear();
+
+    ui->inputEdit->clear();
 }
 
 

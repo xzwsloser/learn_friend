@@ -56,6 +56,8 @@ public:
     explicit KnowledgeRetrievePage(QWidget *parent = nullptr);
     ~KnowledgeRetrievePage();
 
+    void clearText();
+
 protected:
     void paintEvent(QPaintEvent *ev) override;
     void resizeEvent(QResizeEvent *ev) override;

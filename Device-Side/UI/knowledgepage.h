@@ -21,6 +21,11 @@ public:
     explicit KnowledgePage(QWidget *parent = nullptr);
     ~KnowledgePage();
 
+    void clearAllText();
+
+signals:
+    void backToMain();
+
 protected:
     void paintEvent(QPaintEvent *ev) override;
     void resizeEvent(QResizeEvent *ev) override;
