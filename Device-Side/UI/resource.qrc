@@ -977,5 +977,10 @@
         <file>img/distracted_reminder.png</file>
         <file>qss/prompt.qss</file>
         <file>img/prompt_background.png</file>
+        <file>img/knowledgePage_background.png</file>
+        <file>qss/knowledge.qss</file>
+        <file>qss/knowledge_retrieved.qss</file>
+        <file>img/voice_taking.png</file>
+        <file>img/voice_unstarted.png</file>
     </qresource>
 </RCC>

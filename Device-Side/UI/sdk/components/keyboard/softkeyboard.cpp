@@ -111,6 +111,14 @@ void SoftKeyboard::hideInputBufferArea(QLineEdit *currLineEdit)
     inputBufferArea->setVisible(false);
     currentLineEdit = currLineEdit;
 }
+
+void SoftKeyboard::hideInputBufferArea(QPlainTextEdit *curTextEdit)
+{
+    inputBufferArea->setVisible(false);
+    currentLineEdit = nullptr;
+    currentTextEdit = curTextEdit;
+}
+
 /*
  *@brief:   鼠标按下事件处理
  *@author:  缪庆瑞
@@ -781,6 +789,36 @@ void SoftKeyboard::candidateLetterChangedSlot(QString text)
 
     candidateLetter->setFixedWidth(width);
 }
+
+
+void SoftKeyboard::insertToEdit(const QString &msg)
+{
+    if (currentLineEdit != nullptr) {
+        currentLineEdit->insert(msg);
+    }
+
+    if (currentTextEdit != nullptr) {
+        currentTextEdit->insertPlainText(msg);
+    }
+}
+
+void SoftKeyboard::deletePreChar()
+{
+    if (currentLineEdit != nullptr) {
+        currentLineEdit->backspace();
+    }
+
+    if (currentTextEdit != nullptr) {
+        QTextCursor cursor = currentTextEdit->textCursor();
+        if (cursor.position() > 0 &&
+            !cursor.hasSelection()) {
+            cursor.deletePreviousChar();
+            currentTextEdit->setTextCursor(cursor);
+        }
+    }
+}
+
+
 /*
  *@brief:   候选词被点击的响应槽
  *@author:  缪庆瑞
@@ -789,7 +827,8 @@ void SoftKeyboard::candidateLetterChangedSlot(QString text)
 void SoftKeyboard::candidateWordBtnSlot()
 {
     QToolButton *clickedBtn = qobject_cast<QToolButton *>(sender());//获取信号发送者的对象
-    currentLineEdit->insert(clickedBtn->text());
+    // currentLineEdit->insert(clickedBtn->text());
+    insertToEdit(clickedBtn->text());
     hideCandidateArea();//隐藏中文候选区域
 }
 /*
@@ -825,11 +864,13 @@ void SoftKeyboard::numberLetterBtnSlot()
     {
         if(clickedBtn->text()=="&&")//因为可显示控件把&符号当成快捷键标志，一个不显示，所以这个要做下特别处理
         {
-            currentLineEdit->insert("&");
+            // currentLineEdit->insert("&");
+            insertToEdit("&");
         }
         else
         {
-            currentLineEdit->insert(clickedBtn->text());//文本输入框插入字母或符号
+            // currentLineEdit->insert(clickedBtn->text());//文本输入框插入字母或符号
+            insertToEdit(clickedBtn->text());
         }
     }
     else  //中文输入模式 键入的字母放在第二部分输入显示区域的候选字母按钮上
@@ -892,7 +933,8 @@ void SoftKeyboard::deleteTextSlot()
     }
     else
     {
-        currentLineEdit->backspace();
+        // currentLineEdit->backspace();
+        deletePreChar();
     }
 }
 /*
@@ -951,12 +993,14 @@ void SoftKeyboard::spaceSlot()
 {
     if(functionAndCandidateArea->currentWidget() == candidateArea)
     {
-        currentLineEdit->insert(candidateWordBtn[0]->text());
+        // currentLineEdit->insert(candidateWordBtn[0]->text());
+        insertToEdit(candidateWordBtn[0]->text());
         hideCandidateArea();
     }
     else
     {
-        currentLineEdit->insert(" ");//插入一个空格
+        // currentLineEdit->insert(" ");//插入一个空格
+        insertToEdit(" ");
     }
 }
 /*
@@ -1002,7 +1046,8 @@ void SoftKeyboard::enterSlot()
 {
     if(!candidateLetter->text().isEmpty())//候选字母非空，则将字母插入到编辑框里
     {
-        currentLineEdit->insert(candidateLetter->text());
+        // currentLineEdit->insert(candidateLetter->text());
+        insertToEdit(candidateLetter->text());
         hideCandidateArea();
     }
     else
@@ -1011,6 +1056,11 @@ void SoftKeyboard::enterSlot()
         {
             emit sendInputBufferAreaText(inputContentEdit->text());
         }
+
+        if (currentTextEdit != nullptr) {
+            currentTextEdit->clearFocus();
+        }
+
         clearAndCloseSlot();
     }
 }

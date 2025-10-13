@@ -50,6 +50,9 @@ else()
                       pagemanager.cpp
                       watcherpage.h watcherpage.cpp watcherpage.ui
                       promptpage.h promptpage.cpp promptpage.ui
+                      knowledgepage.h knowledgepage.cpp knowledgepage.ui
+                      sdk/components/qtmaterialtabs.cpp
+                      knowledgeretrievepage.h knowledgeretrievepage.cpp knowledgeretrievepage.ui
                     )
   endif()
 endif()

@@ -1,0 +1,78 @@
+QLabel#promptLabel {
+    color: #2e7d32; /* 深绿文字，与背景协调且醒目 */
+    font-size: 35px; /* 增大字号 */
+    font-weight: bold; /* 加粗字体 */
+    padding: 5px;
+}
+
+QLabel#retrievePromptLabel {
+    color: #1565c0; /* 蓝色文字，突出提示 */
+    font-size: 35px;
+    font-weight: bold;
+    padding: 3px;
+}
+
+QScrollArea#documentScrollArea {
+    border: 2px solid #81c784; /* 绿色边框 */
+    background-color: #e8f5e9; /* 浅绿背景，与整体风格统一 */
+    padding: 5px;
+}
+
+QScrollArea#showArea {
+    border: 2px solid #81c784; /* 绿色边框，保持样式一致 */
+    background-color: #e8f5e9; /* 浅绿背景 */
+    padding: 5px;
+}
+
+QPlainTextEdit {
+    border: 2px solid #2196f3; /* 蓝色边框，区分输入区域 */
+    background-color: #ffffff; /* 白色背景，便于输入查看 */
+    color: #333333; /* 深灰文字，清晰可读 */
+    font-size: 35px;
+    padding: 5px;
+}
+
+QPushButton#voiceButton {
+    background-color: #4CAF50;
+    border-radius: 80px;
+}
+
+QPushButton#certainButton{
+    background-color: #a8e6cf;
+    color: #2d936c;
+    border: 2px solid #a8e6cf;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+QPushButton#clearButton {
+    background-color: #b5e2fa;
+    color: #2b78b8;
+    border: 2px solid #b5e2fa;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+QPushButton#zoomOut {
+    background-color: rgba(152, 251, 152, 80);
+    border: 1px solid rgb(144, 238, 144);
+    color: rgb(34, 139, 34);
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+QPushButton#zoomIn {
+    background-color: rgba(152, 251, 152, 80);
+    border: 1px solid rgb(144, 238, 144);
+    color: rgb(34, 139, 34);
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+}

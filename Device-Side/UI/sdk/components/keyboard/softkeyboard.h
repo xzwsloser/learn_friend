@@ -22,6 +22,7 @@
 #include <QStackedWidget>
 #include <QMouseEvent>
 #include <QPoint>
+#include <QPlainTextEdit>
 
 #define CANDIDATEWORDNUM 6   //默认候选词数量
 
@@ -37,6 +38,7 @@ public:
     void setMoveEnabled(bool moveEnabled=true);//设置无边框窗口移动使能
     void showInputBufferArea(QString inputTitle=QString("Please input"),QString inputContent=QString());//显示输入缓存区域
     void hideInputBufferArea(QLineEdit *currLineEdit);//隐藏输入缓存区域
+    void hideInputBufferArea(QPlainTextEdit *curTextEdit);
 
 protected:
     //通过这三个事件处理函数实现无边框窗口的移动
@@ -62,6 +64,9 @@ private:
     void matchChinese(QString pinyin);//根据输入的拼音匹配中文
     void displayCandidateWord(int page);//显示指定页的候选词
     void hideCandidateArea();//隐藏中文输入显示区域
+
+    void insertToEdit(const QString &msg);
+    void deletePreChar();
 
 signals:
     void sendInputBufferAreaText(QString text);//以信号的形式将输入缓存区文本发出去
@@ -105,6 +110,7 @@ private:
     QLabel *inputTitleLabel;
     QLineEdit *inputContentEdit;
     QLineEdit *currentLineEdit;//键盘当前的输入编辑框，可以接受外面传递的指针，默认为内置的inputContentEdit
+    QPlainTextEdit *currentTextEdit;
 
     /***********键盘功能及候选词区域************/
     QStackedWidget *functionAndCandidateArea;

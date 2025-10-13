@@ -188,6 +188,10 @@ void QtMaterialTabs::addTab(const QString &text, const QIcon &icon)
     tab->setText(text);
     tab->setHaloVisible(isHaloVisible());
     tab->setRippleStyle(rippleStyle());
+    QFont font = tab->font();
+    font.setBold(true);
+    font.setPointSize(18);
+    tab->setFont(font);
 
     if (!icon.isNull()) {
         tab->setIcon(icon);
