@@ -21,6 +21,7 @@ signals:
     void backToLoginPage();
     void toWatcher();
     void toKnowledge();
+    void toChat();
 
 protected:
     void paintEvent(QPaintEvent *ev) override;

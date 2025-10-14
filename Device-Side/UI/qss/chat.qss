@@ -12,7 +12,7 @@ QPushButton#backButton {
 QLabel#timeLabel {
     color: #333;
     font-family: "Microsoft YaHei";
-    font-size: 30px;
+    font-size: 50px;
 }
 
 QScrollArea#chatArea {

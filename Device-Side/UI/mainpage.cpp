@@ -98,7 +98,7 @@ bool MainPage::eventFilter(QObject *watched, QEvent *ev)
         } else if (watched == ui->knowledgeWidget) {
             emit toKnowledge();
         } else if (watched == ui->agentWidget) {
-            qInfo() << "点击助学助手";
+            emit toChat();
         }
     }
     return QWidget::eventFilter(watched, ev);

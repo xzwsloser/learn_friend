@@ -117,7 +117,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>返回</string>
+                  <string>注销</string>
                  </property>
                 </widget>
                </item>

@@ -68,6 +68,13 @@ chatPage::chatPage(QWidget *parent)
         &chatPage::sendHumanMsg
     );
 
+    connect(
+        ui->backButton,
+        &QPushButton::clicked,
+        this,
+        &chatPage::backToMain
+    );
+
     /* keyboard */
     keyboard_ = new SoftKeyboard{};
 
@@ -179,7 +186,7 @@ void chatPage::sendHumanMsg()
         "另外，处理流式消息时，除了用定时器批量更新文本，还需考虑文本编码问题，确保特殊字符（如表情符号、中英文混排）正常显示，可通过QString的toUtf8()方法统一编码格式，同时在append文本后，不仅要调用ChatBubbleWidget的adjustSizeToContent()，还要检查父容器QScrollArea的滚动条状态，通过verticalScrollBar()->setValue(verticalScrollBar()->maximum())确保最新内容始终可见；\n"
                    "还有消息的选中与复制功能，默认QLabel不支持文本选中，需通过设置setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByMouse)开启，同时调整样式表避免选中时背景色与气泡色冲突，可设置selection-background-color为半透明蓝色（rgba(100,149,237,0.3)）；最后，测试时需覆盖多种场景，包括纯文本、含换行符文本、中英文混排文本，以及超长长句（如连续无空格的英文单词或URL链接），确保QTextLayout能正确处理换行逻辑，避免文本溢出气泡，同时验证窗口缩放时，所有消息气泡能跟随布局自适应，不会出现重叠或空白异常，这些细节处理好后，才能让聊天界面的用户体验更接近主流聊天软件。"; */
 
-    QTimer *timer = new QTimer{};
+    QTimer *timer = new QTimer{record};
     int idx = 0;
     int len = text.length();
 
@@ -198,6 +205,21 @@ void chatPage::sendHumanMsg()
     });
 
     timer->start(50);
+}
+
+void chatPage::clearMessage()
+{
+    for (ChatBubbleWidget *msg: msgRecords_) {
+        if (msg != nullptr) {
+            ui->chatWindow->layout()->removeWidget(msg);
+            delete msg;
+            msg = nullptr;
+        }
+    }
+
+    msgRecords_.clear();
+
+    ui->inputEdit->clear();
 }
 
 ChatBubbleWidget::ChatBubbleWidget(ChatRole role,

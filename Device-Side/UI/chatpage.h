@@ -53,6 +53,11 @@ public:
     explicit chatPage(QWidget *parent = nullptr);
     ~chatPage();
 
+    void clearMessage();
+
+signals:
+    void backToMain();
+
 protected:
     void paintEvent(QPaintEvent *ev) override;
     bool eventFilter(QObject *watched, QEvent *ev) override;

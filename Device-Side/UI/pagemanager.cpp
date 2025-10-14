@@ -10,11 +10,13 @@ PageManager::PageManager()
     mainpage_ = new MainPage{stackedWidget_};
     watcher_ = new WatcherPage{stackedWidget_};
     knowledge_ = new KnowledgePage{stackedWidget_};
+    chatpage_ = new chatPage{stackedWidget_};
 
     stackedWidget_->addWidget(loginpage_);
     stackedWidget_->addWidget(mainpage_);
     stackedWidget_->addWidget(watcher_);
     stackedWidget_->addWidget(knowledge_);
+    stackedWidget_->addWidget(chatpage_);
 
     QVBoxLayout *layout = new QVBoxLayout{this};
     layout->setContentsMargins(0, 0, 0, 0);
@@ -25,7 +27,7 @@ PageManager::PageManager()
         &loginpage::transferToMainPage,
         this,
         &PageManager::transferToMainPage
-        );
+    );
 
     connect(
         mainpage_,
@@ -62,6 +64,20 @@ PageManager::PageManager()
         &PageManager::knowledgeBackToMain
     );
 
+    connect(
+        chatpage_ ,
+        &chatPage::backToMain,
+        this,
+        &PageManager::chatBackToMain
+    );
+
+    connect(
+        mainpage_,
+        &MainPage::toChat,
+        this,
+        &PageManager::fromMainToChat
+    );
+
     curpage_ = PageStatus::LOGIN;
     stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
 
@@ -94,6 +110,9 @@ void PageManager::backToLoginPage()
     username_ = "";
     curpage_ = PageStatus::LOGIN;
     loginpage_->clearText();
+    watcher_->clearAllText();
+    knowledge_->clearAllText();
+    chatpage_->clearMessage();
     stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
 }
 
@@ -121,6 +140,18 @@ void PageManager::fromMainToKnowledge()
 void PageManager::knowledgeBackToMain()
 {
     knowledge_->clearAllText();
+    curpage_ = PageStatus::MAIN;
+    stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
+}
+
+void PageManager::fromMainToChat()
+{
+    curpage_ = PageStatus::CHAT;
+    stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
+}
+
+void PageManager::chatBackToMain()
+{
     curpage_ = PageStatus::MAIN;
     stackedWidget_->setCurrentIndex(static_cast<int>(curpage_));
 }
