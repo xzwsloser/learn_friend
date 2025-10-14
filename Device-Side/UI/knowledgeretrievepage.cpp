@@ -505,7 +505,7 @@ void KnowledgeRetrievePage::zoom(bool type)
             QFont font = showLabel_->font();
             int fontSize;
             if ((fontSize = font.pointSize()) <= 5) return ;
-            font.setPointSize(fontSize-5);
+            font.setPointSize(fontSize-1);
             showLabel_->setFont(font);
         }
     }

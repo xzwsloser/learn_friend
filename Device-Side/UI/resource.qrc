@@ -981,6 +981,9 @@
         <file>qss/knowledge.qss</file>
         <file>qss/knowledge_retrieved.qss</file>
         <file>img/voice_taking.png</file>
+        <file>img/chat-background.png</file>
         <file>img/voice_unstarted.png</file>
+        <file>qss/chat.qss</file>
+        <file>img/ai_avatar.png</file>
     </qresource>
 </RCC>

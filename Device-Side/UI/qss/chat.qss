@@ -1,0 +1,74 @@
+QPushButton#backButton {
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+QLabel#timeLabel {
+    color: #333;
+    font-family: "Microsoft YaHei";
+    font-size: 30px;
+}
+
+QScrollArea#chatArea {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+}
+
+QScrollArea#chatArea > QWidget#qt_scrollarea_viewport {
+    background-color: #f9f9f9;
+    border: none;
+}
+
+QPlainTextEdit#inputEdit {
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 20px;
+    font-family: "Microsoft YaHei";
+    font-size: 40px;
+    color: #333;
+    padding: 6px;
+}
+
+QPlainTextEdit#inputEdit:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+/* QPushButton#voiceButton {
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    border-radius: 60px;
+    padding: 4px 8px;
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
+    color: #333;
+} */
+
+QPushButton#certainButton {
+    background-color: #5cb85c;
+    border: 1px solid #4cae4c;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+}
+
+QPushButton#clearButton {
+    background-color: #f0ad4e;
+    border: 1px solid #eea236;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+}

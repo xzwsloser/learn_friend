@@ -53,6 +53,8 @@ else()
                       knowledgepage.h knowledgepage.cpp knowledgepage.ui
                       sdk/components/qtmaterialtabs.cpp
                       knowledgeretrievepage.h knowledgeretrievepage.cpp knowledgeretrievepage.ui
+                      chatpage.h chatpage.cpp chatpage.ui
+
                     )
   endif()
 endif()

@@ -33,7 +33,6 @@ QPlainTextEdit {
 }
 
 QPushButton#voiceButton {
-    background-color: #4CAF50;
     border-radius: 80px;
 }
 

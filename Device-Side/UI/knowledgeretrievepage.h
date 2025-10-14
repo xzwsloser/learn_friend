@@ -44,7 +44,6 @@ private:
     ResourceType type_{ResourceType::TEXT};
     QString content_;
     QPixmap pix_;
-    /* TODO: other content(image、text ...) */
 
 };
 
