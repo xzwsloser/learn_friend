@@ -21,18 +21,18 @@ chatPage::chatPage(QWidget *parent)
     }
 
     /* voice Button */
-    ui->voiceButton->setFixedSize(120, 120);
+    ui->voiceButton->setFixedSize(200, 200);
 
     voiceButtonStyles[0] = "QPushButton#voiceButton {"
                      "border-image: url(:/img/voice_unstarted.png) 0 0 0 0 stretch stretch;"
-                     "border-radius: 60px;"
+                     "border-radius: 100px;"
                      "background-repeat: no-repeat;"
                      "background-position: center;"
                            "border: none; }";
 
     voiceButtonStyles[1] = "QPushButton#voiceButton {"
                      "border-image: url(:/img/voice_taking.png) 0 0 0 0 stretch stretch;"
-                     "border-radius: 60px;"
+                     "border-radius: 100px;"
                      "background-repeat: no-repeat;"
                      "background-position: center;"
                            "border: none; }";
@@ -48,9 +48,9 @@ chatPage::chatPage(QWidget *parent)
     );
 
     /* other Button */
-    ui->backButton->setFixedSize(120, 80);
-    ui->certainButton->setFixedSize(120, 80);
-    ui->clearButton->setFixedSize(120, 80);
+    ui->backButton->setFixedSize(130, 100);
+    ui->certainButton->setFixedSize(150, 120);
+    ui->clearButton->setFixedSize(150, 120);
 
     connect(
         ui->clearButton,
@@ -204,7 +204,7 @@ void chatPage::sendHumanMsg()
                 }
     });
 
-    timer->start(50);
+    timer->start(10);
 }
 
 void chatPage::clearMessage()

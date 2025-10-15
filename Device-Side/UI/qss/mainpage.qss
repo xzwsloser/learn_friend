@@ -36,7 +36,7 @@ QLabel#watcherLabel{
     /* 字体选择圆润、可爱的类型，这里假设系统有 "Comic Sans MS" 字体，也可替换为其他卡通感字体 */
     font-family: "Comic Sans MS";
     /* 字体大小根据实际界面布局调整，让文字清晰且协调 */
-    font-size: 50px;
+    font-size: 70px;
     font-weight: bold;
     /* 文字颜色选柔和的黑色或深灰色，保证可读性同时契合清新感 */
     color: #333333;
@@ -47,7 +47,7 @@ QLabel#watcherLabel{
 
 QLabel#knowledgeLabel {
     font-family: "Comic Sans MS";
-    font-size: 50px;
+    font-size: 70px;
     font-weight: bold;
     color: #5a3d9e;
     background-color: transparent;
@@ -57,7 +57,7 @@ QLabel#knowledgeLabel {
 
 QLabel#agentLabel {
     font-family: "Comic Sans MS", "Bubblegum Sans";
-    font-size: 50px;
+    font-size: 70px;
     font-weight: bold;
     color: #1a237e;
     background-color: transparent;
@@ -67,7 +67,7 @@ QLabel#agentLabel {
 QPushButton#backbutton {
     color: #FFFFFF;
     font-family: "Microsoft YaHei";
-    font-size: 40px;
+    font-size: 60px;
     background-color: #6C63FF; /* 主色调背景 */
     border: 1px solid #5A52E5; /* 深色边框增强质感 */
     border-radius: 6px; /* 圆角优化，更柔和 */

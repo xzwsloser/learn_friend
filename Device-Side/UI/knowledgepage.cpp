@@ -29,8 +29,7 @@ KnowledgePage::KnowledgePage(QWidget *parent)
     ui->tabWidget->setFixedWidth(this->width()/2); */
 
     /* backButton */
-    ui->backButton->setFixedWidth(this->width()/20);
-    ui->backButton->setFixedHeight(60);
+    ui->backButton->setFixedSize(150, 120);
 
     /* Stacked Widget */
     QWidget *page_1 = ui->stackedWidget->widget(0);

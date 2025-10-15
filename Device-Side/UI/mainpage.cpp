@@ -14,16 +14,7 @@ MainPage::MainPage(QWidget *parent)
     QFile file{":/qss/mainpage.qss"};
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         QString styleSheet = QLatin1String{file.readAll()};
-        ui->statusWidget->setStyleSheet(styleSheet);
-        ui->watcherWidget->setStyleSheet(styleSheet);
-        ui->knowledgeWidget->setStyleSheet(styleSheet);
-        ui->agentWidget->setStyleSheet(styleSheet);
-        ui->welcomeLabel->setStyleSheet(styleSheet);
-        ui->timeLabel->setStyleSheet(styleSheet);
-        ui->watcherLabel->setStyleSheet(styleSheet);
-        ui->knowledgeLabel->setStyleSheet(styleSheet);
-        ui->agentLabel->setStyleSheet(styleSheet);
-        ui->backbutton->setStyleSheet(styleSheet);
+        this->setStyleSheet(styleSheet);
         file.close();
     }
 
@@ -46,8 +37,6 @@ MainPage::MainPage(QWidget *parent)
 
     ui->welcomeLabel->setText(welcomeText);
 
-    qInfo() << "the Width of button: " << ui->backbutton->width();
-    qInfo() << "the Height of button: " << ui->backbutton->height();
     ui->backbutton->setFixedWidth(200);
 
     connect(

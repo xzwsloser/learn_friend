@@ -23,9 +23,10 @@ loginpage::loginpage(QWidget *parent)
     QFile file{":/qss/loginpage.qss"};
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         QString loginpage_style = QLatin1String(file.readAll());
-        ui->titleLabel->setStyleSheet(loginpage_style);
+        /* ui->titleLabel->setStyleSheet(loginpage_style);
         ui->loginWidget->setStyleSheet(loginpage_style);
-        ui->loginTitleLabel->setStyleSheet(loginpage_style);
+        ui->loginTitleLabel->setStyleSheet(loginpage_style); */
+        this->setStyleSheet(loginpage_style);
         file.close();
     }
 
@@ -36,7 +37,7 @@ loginpage::loginpage(QWidget *parent)
     font.setPointSize(40);
     ui->username_editor->setFont(font);
 
-    ui->username_editor->setLabelFontSize(15);
+    ui->username_editor->setLabelFontSize(35);
     ui->username_editor->setAttribute(Qt::WA_InputMethodEnabled, false);
 
     ui->password_editor->setLabel("密码");
@@ -46,7 +47,7 @@ loginpage::loginpage(QWidget *parent)
     font.setPointSize(40);
     ui->password_editor->setFont(font);
 
-    ui->password_editor->setLabelFontSize(15);
+    ui->password_editor->setLabelFontSize(35);
     ui->password_editor->setAttribute(Qt::WA_InputMethodEnabled, false);
 
     ui->login_button->setBackgroundColor(QColor{"#388E3C"});
@@ -70,10 +71,14 @@ loginpage::loginpage(QWidget *parent)
             this,
             callback);
 
+    ui->username_editor->clearFocus();
+    ui->password_editor->clearFocus();
+    this->clearFocus();
+
     this->ui->username_editor->installEventFilter(this);
     this->ui->password_editor->installEventFilter(this);
-
     this->frame = new QLabel(this);
+
 }
 
 loginpage::~loginpage()
@@ -95,13 +100,14 @@ void loginpage::paintEvent(QPaintEvent *ev)
 
 bool loginpage::eventFilter(QObject *watched, QEvent *ev)
 {
-    if (ev->type() == QEvent::MouseButtonRelease) {
+    if (ev->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mev = static_cast<QMouseEvent *>(ev);
         if (mev->button() == Qt::LeftButton) {
             QPoint pos = this->pos() +
                          ui->loginWidget->pos() +
                          ui->fillwidget->pos();
             QPoint delta = QPoint(100, 250);
+
             if (watched == ui->username_editor) {
                 keyboard->hideInputBufferArea(ui->username_editor);
                 keyboard->resize(this->width()/2, this->height()/2);
@@ -129,6 +135,23 @@ bool loginpage::eventFilter(QObject *watched, QEvent *ev)
             }
         }
     }
+
+    if (watched == ui->username_editor) {
+        if (!ui->username_editor->text().isEmpty()) {
+            ui->username_editor->setLabel("");
+        } else {
+            ui->username_editor->setLabel("用户名");
+        }
+    }
+
+    if (watched == ui->password_editor) {
+        if (!ui->password_editor->text().isEmpty()) {
+            ui->password_editor->setLabel("");
+        } else {
+            ui->password_editor->setLabel("密码");
+        }
+    }
+
     return QWidget::eventFilter(watched, ev);
 }
 

@@ -3,6 +3,9 @@
 #include <QPainter>
 #include <QFile>
 #include <QDebug>
+#include <QGesture>
+#include <QSwipeGesture>
+#include <QScrollBar>
 
 KnowledgeRetrievePage::KnowledgeRetrievePage(QWidget *parent)
     : QWidget(parent)
@@ -14,7 +17,7 @@ KnowledgeRetrievePage::KnowledgeRetrievePage(QWidget *parent)
     keyboard_ = new SoftKeyboard;
 
     /* voice Button */
-    ui->voiceButton->setFixedSize(120, 120);
+    ui->voiceButton->setFixedSize(200, 200);
 
     /* qss */
     QFile file{":/qss/knowledge_retrieved.qss"};
@@ -26,14 +29,14 @@ KnowledgeRetrievePage::KnowledgeRetrievePage(QWidget *parent)
 
     voiceButtonStyles[0] = "QPushButton#voiceButton {"
                      "border-image: url(:/img/voice_unstarted.png) 0 0 0 0 stretch stretch;"
-                     "border-radius: 60px;"
+                     "border-radius: 100px;"
                      "background-repeat: no-repeat;"
                      "background-position: center;"
                            "border: none; }";
 
     voiceButtonStyles[1] = "QPushButton#voiceButton {"
                      "border-image: url(:/img/voice_taking.png) 0 0 0 0 stretch stretch;"
-                     "border-radius: 60px;"
+                     "border-radius: 100px;"
                      "background-repeat: no-repeat;"
                      "background-position: center;"
                            "border: none; }";
@@ -45,13 +48,13 @@ KnowledgeRetrievePage::KnowledgeRetrievePage(QWidget *parent)
     ui->buttonLayout->setAlignment(ui->certainButton, Qt::AlignCenter);
     ui->buttonLayout->setAlignment(ui->clearButton, Qt::AlignCenter);
 
-    ui->certainButton->setFixedSize(120, 80);
-    ui->clearButton->setFixedSize(120, 80);
+    ui->certainButton->setFixedSize(180, 120);
+    ui->clearButton->setFixedSize(180, 120);
 
     ui->inputEdit->installEventFilter(this);
 
-    ui->zoomIn->setFixedSize(120, 80);
-    ui->zoomOut->setFixedSize(120, 80);
+    ui->zoomIn->setFixedSize(150, 100);
+    ui->zoomOut->setFixedSize(150, 100);
 
     connect(
         ui->voiceButton,
@@ -103,6 +106,9 @@ KnowledgeRetrievePage::KnowledgeRetrievePage(QWidget *parent)
             zoom(false);
         }
     );
+
+    /* ui->documentScrollArea->grabGesture(Qt::SwipeGesture);
+    ui->showArea->grabGesture(Qt::SwipeGesture); */
 }
 
 KnowledgeRetrievePage::~KnowledgeRetrievePage()
@@ -176,6 +182,36 @@ bool KnowledgeRetrievePage::eventFilter(QObject *watched, QEvent *ev)
             }
         }
     }
+
+    /* if (watched == ui->showArea->viewport() &&
+        ev->type() == QEvent::Gesture) {
+        QGestureEvent *gev = static_cast<QGestureEvent*>(ev);
+        QSwipeGesture *swipegev = static_cast<QSwipeGesture*>(gev->gesture(Qt::SwipeGesture));
+        if (swipegev->state() == Qt::GestureFinished) {
+            if (swipegev->verticalDirection() == QSwipeGesture::Up) {
+                QScrollBar *bar = ui->showArea->verticalScrollBar();
+                bar->setValue(bar->value() + 100);
+            } else if (swipegev->verticalDirection() == QSwipeGesture::Down) {
+                QScrollBar *bar = ui->showArea->verticalScrollBar();
+                bar->setValue(bar->value() - 100);
+            }
+        }
+    }
+
+    if (watched == ui->documentScrollArea->viewport() &&
+        ev->type() == QEvent::Gesture) {
+        QGestureEvent *gev = static_cast<QGestureEvent*>(ev);
+        QSwipeGesture *swipegev = static_cast<QSwipeGesture*>(gev->gesture(Qt::SwipeGesture));
+        if (swipegev->state() == Qt::GestureFinished) {
+            if (swipegev->verticalDirection() == QSwipeGesture::Up) {
+                QScrollBar *bar = ui->documentScrollArea->verticalScrollBar();
+                bar->setValue(bar->value() + 100);
+            } else if (swipegev->verticalDirection() == QSwipeGesture::Down) {
+                QScrollBar *bar = ui->documentScrollArea->verticalScrollBar();
+                bar->setValue(bar->value() - 100);
+            }
+        }
+    } */
 
     return QWidget::eventFilter(watched, ev);
 }

@@ -24,46 +24,31 @@ WatcherPage::WatcherPage(QWidget *parent)
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         /* qss style */
         QString styleSheet = QLatin1String(file.readAll());
-        ui->statusWidget->setStyleSheet(styleSheet);
-        ui->screenWidget->setStyleSheet(styleSheet);
-        ui->settingWidget->setStyleSheet(styleSheet);
-        ui->screen->setStyleSheet(styleSheet);
-        ui->backButton->setStyleSheet(styleSheet);
-        ui->onButton->setStyleSheet(styleSheet);
-        ui->settingPromptLabel->setStyleSheet(styleSheet);
-        ui->attentioncheckBox->setStyleSheet(styleSheet);
-        ui->distractedcheckBox->setStyleSheet(styleSheet);
-        ui->othercheckBox->setStyleSheet(styleSheet);
-        ui->startButton->setStyleSheet(styleSheet);
-        ui->stopButton->setStyleSheet(styleSheet);
-        ui->endButton->setStyleSheet(styleSheet);
+        this->setStyleSheet(styleSheet);
         file.close();
     }
 
     /* status bar */
-    ui->backButton->setFixedWidth(90);
-    ui->backButton->setFixedHeight(65);
+    ui->backButton->setFixedWidth(180);
+    ui->backButton->setFixedHeight(120);
 
     /* screen widget */
-    int h = ui->onButton->height();
-    ui->onButton->setFixedHeight(2*h);
+    ui->onButton->setFixedHeight(300);
+    ui->onButton->setFixedHeight(120);
 
     /* param setting widget */
-    ui->timeSettingLabel->setLabelFontSize(15);
+    ui->timeSettingLabel->setLabelFontSize(35);
     QFont font = ui->timeSettingLabel->font();
-    font.setPointSize(30);
+    font.setPointSize(40);
     ui->timeSettingLabel->setFont(font);
     ui->timeSettingLabel->setLabel("请输入监控时长 (mid)");
     ui->timeSettingLabel->installEventFilter(this);
     QIntValidator *validator = new QIntValidator{1, 1440, ui->timeSettingLabel};
     ui->timeSettingLabel->setValidator(validator);
 
-    int h_s = ui->startButton->height();
-    int h_st = ui->stopButton->height();
-    int h_eb = ui->endButton->height();
-    ui->startButton->setFixedHeight(2*h_s);
-    ui->stopButton->setFixedHeight(2*h_st);
-    ui->endButton->setFixedHeight(2*h_eb);
+    ui->startButton->setFixedSize(300, 120);
+    ui->stopButton->setFixedSize(300, 120);
+    ui->endButton->setFixedSize(300, 120);
 
     connect(
         ui->onButton,

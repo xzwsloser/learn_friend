@@ -110,6 +110,7 @@ void SoftKeyboard::hideInputBufferArea(QLineEdit *currLineEdit)
 {
     inputBufferArea->setVisible(false);
     currentLineEdit = currLineEdit;
+    currentTextEdit = nullptr;
 }
 
 void SoftKeyboard::hideInputBufferArea(QPlainTextEdit *curTextEdit)
@@ -1055,6 +1056,10 @@ void SoftKeyboard::enterSlot()
         if(inputBufferArea->isVisible())//输入缓存区显示时，将缓存的内容通过信号发送出去
         {
             emit sendInputBufferAreaText(inputContentEdit->text());
+        }
+
+        if (currentLineEdit != nullptr) {
+            currentLineEdit->clearFocus();
         }
 
         if (currentTextEdit != nullptr) {

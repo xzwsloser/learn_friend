@@ -24,7 +24,7 @@ QPushButton#backButton {
     border-radius: 5px;
     border: 1px solid #388E3C;
     padding: 5px 10px;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -43,7 +43,7 @@ QPushButton#onButton {
         border-radius: 8px;
         border: none;
         padding: 6px 12px;
-        font-size: 40px;
+        font-size: 60px;
         font-weight: bold;
 }
 
@@ -58,17 +58,17 @@ QLabel#settingPromptLabel {
 
 QCheckBox {
     font-family: "Microsoft YaHei", "SimHei", sans-serif;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
     color: #555555;
     margin: 5px 0;
 }
 
 QCheckBox::indicator:unchecked {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #87CEEB;
-    border-radius: 3px;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #87CEEB;
+    border-radius: 5px;
     background-color: white;
 }
 
@@ -76,7 +76,7 @@ QPushButton#startButton,
 QPushButton#stopButton,
 QPushButton#endButton {
     font-family: "Microsoft YaHei", "SimHei", sans-serif;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
     color: #333333;
     border: 1px solid #b0e0e6;

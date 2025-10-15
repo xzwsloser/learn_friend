@@ -18,15 +18,8 @@ PromptPage::PromptPage(QWidget *parent)
         file.close();
     }
 
-    int w = ui->saveButton->width();
-    int h = ui->saveButton->height();
-    ui->saveButton->setFixedWidth(2*w);
-    ui->saveButton->setFixedHeight(2*h);
-
-    w = ui->cancelButton->width();
-    h = ui->cancelButton->height();
-    ui->cancelButton->setFixedWidth(2*w);
-    ui->cancelButton->setFixedHeight(2*h);
+    ui->saveButton->setFixedSize(150, 120);
+    ui->cancelButton->setFixedSize(150, 120);
 
     connect(
         ui->saveButton,
