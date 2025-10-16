@@ -5,6 +5,7 @@
 #include "knowledgeretrievepage.h"
 #include "qtmaterialavatar.h"
 #include "softkeyboard.h"
+#include "network/httpclient.h"
 
 namespace Ui {
 class chatPage;
@@ -34,6 +35,7 @@ public:
     void appendText(const QString &msg);
     void setMaxLineSize(int maxLineSize);
 
+
 protected:
     void paintEvent(QPaintEvent *ev) override;
 
@@ -54,6 +56,7 @@ public:
     ~chatPage();
 
     void clearMessage();
+    void setHttpClient(HttpClient *client) { client_ = client; }
 
 signals:
     void backToMain();
@@ -69,6 +72,11 @@ private:
     SoftKeyboard *keyboard_;
     std::vector<ChatBubbleWidget*> msgRecords_;
     ChatStatus status_{ChatStatus::INIT};
+    HttpClient *client_;
+
+    void onStreamProcess(ChatBubbleWidget *aiMessage, QNetworkReply *reply);
+    void onStreamFinish(ChatBubbleWidget *aiMessage, QNetworkReply *reply);
+    void onChatProcess(ChatBubbleWidget *aiMessage, QNetworkReply *reply);
 
 private slots:
     void voiceRecord();

@@ -6,6 +6,7 @@
 #include "watcherpage.h"
 #include "knowledgepage.h"
 #include "chatpage.h"
+#include "network/httpclient.h"
 #include <QStackedWidget>
 
 enum PageStatus: int {
@@ -21,6 +22,19 @@ class PageManager: public QWidget {
 public:
    PageManager();
    ~PageManager();
+
+   void setHttpClient(HttpClient *client) { client_ = client; }
+   HttpClient* getHttpClient() const { return client_; }
+
+   void setAllHttpClient(HttpClient *client) {
+       client_ = client;
+       loginpage_->setHttpClient(client);
+       mainpage_->setHttpClient(client);
+       watcher_->setHttpClient(client);
+       knowledge_->setHttpClient(client);
+       chatpage_->setHttpClient(client);
+   }
+
 private:
    loginpage *loginpage_;
    MainPage *mainpage_;
@@ -30,6 +44,7 @@ private:
    QString username_;
    QStackedWidget *stackedWidget_;
    PageStatus curpage_;
+   HttpClient *client_;
 
 private slots:
    void transferToMainPage(const QString &username);

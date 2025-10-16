@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "softkeyboard.h"
+#include "network/httpclient.h"
 #include "promptpage.h"
 
 namespace Ui {
@@ -33,6 +34,8 @@ public:
     ~WatcherPage();
     void clearAllText();
 
+    void setHttpClient(HttpClient *client) { client_ = client; }
+
 signals:
     void backToMain();
 
@@ -51,6 +54,7 @@ private:
     PromptPage *promptPage_;
     QTimer *timer_;
     QString msgTemplate_{""};
+    HttpClient *client_;
 
     void updateTime();
     void showMessage(const QString &prompt, bool normal_, int interval = 2000);

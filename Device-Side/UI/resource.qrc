@@ -985,5 +985,6 @@
         <file>img/voice_unstarted.png</file>
         <file>qss/chat.qss</file>
         <file>img/ai_avatar.png</file>
+        <file>config/config.json</file>
     </qresource>
 </RCC>

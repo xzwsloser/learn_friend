@@ -1,0 +1,9 @@
+{
+    "SiliconFlow": {
+        "APIKEY": "<YOUR_API_KEY>",
+        "Chat": {
+            "Url": "https://api.siliconflow.cn/v1/chat/completions",
+            "Model": "Qwen/Qwen3-VL-235B-A22B-Instruct"
+        }
+    }
+}

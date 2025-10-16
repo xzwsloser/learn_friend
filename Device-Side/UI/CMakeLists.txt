@@ -12,22 +12,34 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network)
 
 file(GLOB_RECURSE ${QT_MATERIAL_SRC}
      "${CMAKE_CURRENT_SOURCE_DIR}/sdk/components/*.cpp")
 file(GLOB_RECURSE ${QT_MATERIAL_INC}
      "${CMAKE_CURRENT_SOURCE_DIR}/sdk/components/*.h")
+file(GLOB_RECURSE ${NETWORK_SRC}
+     "${CMAKE_CURRENT_SOURCE_DIR}/network/*.cpp")
+file(GLOB_RECURSE ${NETWORK_INC}
+     "${CMAKE_CURRENT_SOURCE_DIR}/network/*.h")
+file(GLOB_RECURSE ${CONFIG_SRC}
+     "${CMAKE_CURRENT_SOURCE_DIR}/config/*.cpp")
+file(GLOB_RECURSE ${CONFIG_INC}
+     "${CMAKE_CURRENT_SOURCE_DIR}/config/*.h")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/components)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/components/layouts)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/components/lib)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/components/keyboard)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/network)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/config)
 
 set(PROJECT_SOURCES main.cpp loginpage.cpp loginpage.h loginpage.ui
                     mainpage.cpp mainpage.h mainpage.ui
-                    ${QT_MATERIAL_SRC} ${QT_MATERIAL_INC})
+                    ${QT_MATERIAL_SRC} ${QT_MATERIAL_INC}
+                    ${NETWORK_SRC} ${NETWORK_INC}
+                    ${CONFIG_SRC}  ${CONFIG_INC})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
   qt_add_executable(UI MANUAL_FINALIZATION ${PROJECT_SOURCES})
@@ -54,12 +66,16 @@ else()
                       sdk/components/qtmaterialtabs.cpp
                       knowledgeretrievepage.h knowledgeretrievepage.cpp knowledgeretrievepage.ui
                       chatpage.h chatpage.cpp chatpage.ui
-
+                      network/httpclient.h
+                      network/httpclient.cpp
+                      config/config.h
+                      config/config.cpp
                     )
   endif()
 endif()
 
 target_link_libraries(UI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(UI PRIVATE Qt${QT_VERSION_MAJOR}::Network)
 if (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm64")
         target_link_libraries(UI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/sdk/stdlib/libcomponents_arm.a)
 else()

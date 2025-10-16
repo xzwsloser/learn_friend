@@ -2,6 +2,7 @@
 #define MAINPAGE_H
 
 #include <QWidget>
+#include "network/httpclient.h"
 
 namespace Ui {
 class MainPage;
@@ -17,6 +18,8 @@ public:
     void setUsername(const QString &username);
     ~MainPage();
 
+    void setHttpClient(HttpClient *client) { client_ = client; }
+
 signals:
     void backToLoginPage();
     void toWatcher();
@@ -31,6 +34,7 @@ private:
     void updateTime();
     Ui::MainPage *ui;
     QString username_{"xxx"};
+    HttpClient *client_;
 };
 
 #endif // MAINPAGE_H

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "knowledgeretrievepage.h"
+#include "network/httpclient.h"
 
 namespace Ui {
 class KnowledgePage;
@@ -23,6 +24,8 @@ public:
 
     void clearAllText();
 
+    void setHttpClient(HttpClient *client) { client_ = client; }
+
 signals:
     void backToMain();
 
@@ -34,6 +37,7 @@ private:
     Ui::KnowledgePage *ui;
     KnowledgeRetrievePage *retrievedPage_;
     KnowledgePageStatus curpage_{KnowledgePageStatus::RETRIEVED};
+    HttpClient *client_;
 
     void updateTime();
 };
