@@ -243,6 +243,7 @@ ChatBubbleWidget::ChatBubbleWidget(ChatRole role,
         content_->setStyleSheet(
         "border-radius: 8px;"
         "padding: 8px 10px;"
+        "font-size: 50px;"
         "font-family: \"Microsoft YaHei\", \"SimHei\", sans-serif;"
         "line-height: 1.5;"
         "background-color: #f0f0f0;"
@@ -260,6 +261,7 @@ ChatBubbleWidget::ChatBubbleWidget(ChatRole role,
         content_->setStyleSheet(
         "border-radius: 8px;"
         "padding: 8px 10px;"
+        "font-size: 50px;"
         "font-family: \"Microsoft YaHei\", \"SimHei\", sans-serif;"
         "line-height: 1.5;"
         "word-wrap: break-word;"
