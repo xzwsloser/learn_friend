@@ -14,7 +14,7 @@ def train_on_gpu(model_name="yolov8s.pt"):
         name=f'{model_name}_fine',
         amp=True,
         plots=True,
-        exists_ok=True
+        exist_ok=True
     )
 
 if __name__ == '__main__':
