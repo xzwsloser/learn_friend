@@ -1,12 +1,18 @@
 from ultralytics import YOLO
+import os
 import cv2
+from tqdm import tqdm
 
 # @Description: 在图片上调用 YOLO 模型实现目标检测
 def yolo_detect_on_image(model_path: str = './model/yolov8n.pt',
-                         image_path: str = './images/val/img/test_static_without_person.jpg'):
+                         image_path: str = './images/val/img/test_static_without_person.jpg',
+                         model_name: str = "yolov8s"):
     model = YOLO(model_path)
     results = model(image_path, imgsz=640)
-    results[0].show()
+    filename = image_path.split('/')[-1]
+    save_dir = f"./images/test/{model_name}"
+    os.makedirs(save_dir, exist_ok=True)
+    results[0].save(filename=f"{save_dir}/test_{filename}")
 
 # @Description: 调用摄像头完成实时推理
 def yolo_detect_reaction(model_path: str = './model/yolov8n.pt'):
@@ -58,32 +64,28 @@ def yolo_detect_on_video(model_path='./model/yolov8n.pt',
     cap.release()
     cv2.destroyAllWindows()
 
+def yolo_detect_on_test(model_path: str,
+                        model_name: str):
+    for idx in tqdm(range(1, 60), desc=model_name):
+        image_path = f'/home/loser/Desktop/测试集/{idx}.jpg'
+        yolo_detect_on_image(model_path=model_path,
+                             image_path=image_path,
+                             model_name=model_name)
+
+
 if __name__ == '__main__':
-    # yolov8n.pt: 无法识别作业本、笔、书籍只有在翻页的时候才可以良好识别, 无法识别电脑键盘、鼠标等器件
-    # yolo_detect_on_video(model_path='./model/yolov8n.pt')
-    # yolov8s.pt: 无法识别作业本、书籍识别效果不好, 无法识别电脑键盘、鼠标等
-    # yolo_detect_on_video(model_path='./model/yolov8s.pt')
-    # yolov8m.pt: 卡顿明显、无法识别作业本、笔、书籍等
-    # yolo_detect_on_video(model_path='./model/yolov8m.pt')
+    yolov8s_fine_v2_path = "./runs/detect/yolov8s.pt_fine/weights/best.pt"
+    yolov8s_fine_v1_path = "./runs/detect/yolov8s_init/weights/best.pt"
+    yolov8n_fine_v2_path = "./runs/detect/yolov8n.pt_fine/weights/best.pt"
 
-    # yolov8n-oiv7.pt: 无法识别书本、笔、作业本等 ( 效果很差 )
-    # yolo_detect_on_video(model_path='./model/yolov8n-oiv7.pt')
-    # yolov8s-oiv7.pt: 无法识别笔记本电脑等 ( 效果差 )
-    # yolo_detect_on_video(model_path='./model/yolov8s-oiv7.pt')
-    # yolov8m-oiv7.pt: 卡顿严重
-    # yolo_detect_on_video(model_path='./model/yolov8m-oiv7.pt')
+    print('-'*10 + 'test yolov8s model fine v2' + '-'*10)
+    yolo_detect_on_test(model_path=yolov8s_fine_v2_path,
+                        model_name="yolov8s_fine_v2")
 
-    # YOLOv8s 测试
-    # 手机 ( 正常状态识别比较好 )
-    # yolo_detect_on_image('./model/yolov8s.pt', image_path='./images/val/img/cell_phone1.jpg')
-    # yolo_detect_on_image('./model/yolov8s.pt', image_path='./images/val/img/cell_phone2.jpg')
+    print('-'*10 + 'test yolov8s model fine v1' + '-'*10)
+    yolo_detect_on_test(model_path=yolov8s_fine_v1_path,
+                        model_name="yolov8s_fine_v1")
 
-    # 平板 ( 无法识别 )
-    # yolo_detect_on_image('./model/yolov8s.pt', image_path='./images/val/img/tablet1.jpg')
-    # yolo_detect_on_image('./model/yolov8s.pt', image_path='./images/val/img/tablet2.jpg')
-
-    # YOLOv8s 视频测试
-    best_model = './runs/detect/train/weights/best.pt'
-    # yolo_detect_on_video(best_model , video_path='./images/val/video/show_things.mp4')
-    # yolo_detect_reaction(best_model)
-    yolo_detect_on_image(best_model, image_path='./images/val/img/test_model_1.jpg')
+    print('-'*10 + 'test yolov8n model fine v2' + '-'*10)
+    yolo_detect_on_test(model_path=yolov8n_fine_v2_path,
+                        model_name="yolov8n_fine_v2")
