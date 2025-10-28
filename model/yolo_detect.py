@@ -83,5 +83,7 @@ if __name__ == '__main__':
     # yolo_detect_on_image('./model/yolov8s.pt', image_path='./images/val/img/tablet2.jpg')
 
     # YOLOv8s 视频测试
-    yolo_detect_on_video('./model/yolov8s.pt', video_path='./images/val/video/show_things.mp4')
-
+    best_model = './runs/detect/train/weights/best.pt'
+    # yolo_detect_on_video(best_model , video_path='./images/val/video/show_things.mp4')
+    # yolo_detect_reaction(best_model)
+    yolo_detect_on_image(best_model, image_path='./images/val/img/test_model_1.jpg')
